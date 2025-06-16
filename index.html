@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cổng Tra Cứu Điểm Đánh Giá Năng Lực – ĐHQG‑HCM</title>
+    <title>Tra Cứu Điểm Đánh Giá Năng Lực – ĐHQG-HCM</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -13,7 +13,7 @@
     <!-- Navbar -->
     <header class="fixed inset-x-0 top-0 z-40 flex items-center justify-between bg-blue-700/90 px-6 py-3 text-white shadow-lg backdrop-blur-md">
       <a href="#" class="flex items-center gap-2 text-lg font-semibold select-none">
-        <img src="logo-dhqg.png" alt="ĐHQG‑HCM" class="h-9 w-auto" />
+        <img src="logo-dhqg.png" alt="ĐHQG-HCM" class="h-9 w-auto" />
         Tra Cứu Điểm ĐGNL
       </a>
       <nav class="hidden space-x-8 md:flex">
@@ -80,7 +80,7 @@
         <div class="space-y-4">
           <details class="rounded-lg bg-gray-50 p-4 shadow-sm">
             <summary class="cursor-pointer font-medium text-blue-700">Không tra cứu được điểm?</summary>
-            <p class="mt-2 text-gray-600">Kiểm tra định dạng <span class="font-medium">CCCD</span> (9–12 số) và <span class="font-medium">Email</span>. Nếu đúng mà vẫn lỗi, liên hệ Trung tâm Khảo thí ĐHQG‑HCM.</p>
+            <p class="mt-2 text-gray-600">Hãy chắc chắn <span class="font-medium">CCCD</span> (9–12 số) và <span class="font-medium">Email</span> chính xác. Nếu vẫn lỗi, liên hệ Trung tâm Khảo thí ĐHQG‑HCM.</p>
           </details>
         </div>
       </div>
@@ -90,7 +90,7 @@
     <footer class="bg-blue-700 py-8 text-center text-white">
       <div class="container mx-auto max-w-4xl px-6">
         <p>© 2025 Đại học Quốc gia TP.HCM – Trung tâm Khảo thí & ĐGCLĐT</p>
-        <p class="mt-2 text-sm text-blue-200">Liên hệ: Nguyễn Huy Dũng – Ext 2302</p>
+        <p class="mt-2 text-sm text-blue-200">Liên hệ:Nguyễn Huy Dũng – Ext 2302</p>
       </div>
     </footer>
 
@@ -135,14 +135,21 @@
       const resSubjectList = document.getElementById('resSubjectList');
       const resTotal = document.getElementById('resTotal');
 
-      // Static scores
-      const SUBJECTS = [
-        ['Tiếng Việt', 218],
-        ['Tiếng Anh', 202],
-        ['Toán', 191],
-        ['Tư duy khoa học', 221]
-      ];
-      const TOTAL = 832;
+      function generateScores() {
+        const subjectNames = ['Tiếng Việt', 'Tiếng Anh', 'Toán', 'Tư duy khoa học'];
+        const total = Math.floor(Math.random() * (910 - 820 + 1)) + 820; // 820‑910
+
+        // Random weights
+        const weights = subjectNames.map(() => Math.random());
+        const weightSum = weights.reduce((a, b) => a + b, 0);
+        let scores = weights.map(w => Math.round((w / weightSum) * total));
+
+        // Adjust rounding error
+        const diff = total - scores.reduce((a, b) => a + b, 0);
+        scores[0] += diff;
+
+        return { total, pairs: subjectNames.map((n, i) => [n, scores[i]]) };
+      }
 
       lookupForm.addEventListener('submit', e => {
         e.preventDefault();
@@ -151,31 +158,31 @@
         const cccd = document.getElementById('cccd').value.trim();
         const email = document.getElementById('email').value.trim();
 
-        // Basic validation
         if (!/^[0-9]{9,12}$/.test(cccd)) {
           errorBox.textContent = 'CCCD phải gồm 9–12 chữ số.';
           errorBox.classList.remove('hidden');
           return;
         }
-        if (!email.includes('@')) {
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
           errorBox.textContent = 'Định dạng email chưa hợp lệ.';
           errorBox.classList.remove('hidden');
           return;
         }
 
-        // Simulate API delay
-        setTimeout(() => {
-          resCccd.textContent = cccd;
-          resEmail.textContent = email;
-          resSubjectList.innerHTML = '';
-          SUBJECTS.forEach(([name, score]) => {
-            const li = document.createElement('li');
-            li.textContent = `${name}: ${score} điểm.`;
-            resSubjectList.appendChild(li);
-          });
-          resTotal.textContent = `Tổng: ${TOTAL} điểm.`;
-          resultModal.classList.remove('hidden');
-        }, 300);
+        const { total, pairs } = generateScores();
+
+        // Render result
+        resCccd.textContent = cccd;
+        resEmail.textContent = email;
+        resSubjectList.innerHTML = '';
+        pairs.forEach(([name, score]) => {
+          const li = document.createElement('li');
+          li.textContent = `${name}: ${score} điểm.`;
+          resSubjectList.appendChild(li);
+        });
+        resTotal.textContent = `Tổng: ${total} điểm.`;
+
+        resultModal.classList.remove('hidden');
       });
 
       // Close modal
@@ -185,3 +192,4 @@
       });
     </script>
   </body>
+</html>
