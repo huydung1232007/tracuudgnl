@@ -4,16 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tra Cứu Điểm Đánh Giá Năng Lực – ĐHQG-HCM</title>
+    <title>Tra Cứu Điểm Đánh Giá Năng Lực – ĐHQG‑HCM</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
   </head>
   <body class="min-h-screen bg-gray-50 font-sans text-gray-800 antialiased scroll-smooth">
     <!-- Navbar -->
-    <header class="fixed inset-x-0 top-0 z-40 flex items-center justify-between bg-green-700/90 px-6 py-3 text-white shadow-lg backdrop-blur-md">
+    <header class="fixed inset-x-0 top-0 z-40 flex items-center justify-between bg-blue-700/90 px-6 py-3 text-white shadow-lg backdrop-blur-md">
       <a href="#" class="flex items-center gap-2 text-lg font-semibold">
-        <i class="ph ph-magnifying-glass text-2xl"></i>
+        <!-- ĐHQG‑HCM logo -->
+        <img src="logo-dhqg.png" alt="ĐHQG-HCM Logo" class="h-9 w-auto" />
         Tra Cứu Điểm ĐGNL
       </a>
       <nav class="hidden space-x-8 md:flex">
@@ -25,20 +26,20 @@
 
     <!-- Mobile Drawer -->
     <aside id="mobileMenu" class="fixed inset-y-0 left-0 z-30 w-64 -translate-x-full transform bg-white shadow-lg transition-transform duration-300">
-      <div class="flex items-center justify-between bg-green-700 px-6 py-4 text-white">
+      <div class="flex items-center justify-between bg-blue-700 px-6 py-4 text-white">
         <span class="text-lg font-semibold">Menu</span>
         <button id="btnCloseMenu"><i class="ph ph-x text-2xl"></i></button>
       </div>
       <nav class="flex flex-col gap-4 p-6">
-        <a href="#guide" class="text-gray-700 hover:text-green-600">Hướng dẫn</a>
-        <a href="#faq" class="text-gray-700 hover:text-green-600">FAQ</a>
+        <a href="#guide" class="text-gray-700 hover:text-blue-600">Hướng dẫn</a>
+        <a href="#faq" class="text-gray-700 hover:text-blue-600">FAQ</a>
       </nav>
     </aside>
 
     <!-- Hero + Lookup Form -->
     <main class="flex flex-col items-center justify-center pt-28 pb-16">
       <section class="w-full max-w-xl px-6 text-center">
-        <h1 class="mb-6 text-3xl font-extrabold text-green-700 md:text-4xl">
+        <h1 class="mb-6 text-3xl font-extrabold text-blue-700 md:text-4xl">
           Tra Cứu Kết Quả Kỳ Thi Đánh Giá Năng Lực 2025
         </h1>
         <p class="mb-8 text-gray-600">
@@ -48,17 +49,17 @@
         <form id="lookupForm" class="space-y-6 rounded-xl bg-white p-6 shadow-md">
           <div>
             <label for="candid" class="mb-1 block text-sm font-medium">Số báo danh</label>
-            <input type="text" id="candid" required minlength="6" maxlength="12" class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-green-600 focus:outline-none" placeholder="VD: 12345678" />
+            <input type="text" id="candid" required minlength="6" maxlength="12" class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-blue-600 focus:outline-none" placeholder="VD: 12345678" />
           </div>
           <div>
             <label for="cccd" class="mb-1 block text-sm font-medium">Căn cước công dân</label>
-            <input type="text" id="cccd" required minlength="9" maxlength="12" pattern="\d{9,12}" class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-green-600 focus:outline-none" placeholder="VD: 012345678901" />
+            <input type="text" id="cccd" required minlength="9" maxlength="12" pattern="\d{9,12}" class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-blue-600 focus:outline-none" placeholder="VD: 012345678901" />
           </div>
           <div>
             <label for="email" class="mb-1 block text-sm font-medium">Email</label>
-            <input type="email" id="email" required class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-green-600 focus:outline-none" placeholder="vd: abc@example.com" />
+            <input type="email" id="email" required class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-blue-600 focus:outline-none" placeholder="vd: abc@example.com" />
           </div>
-          <button type="submit" class="w-full rounded-lg bg-green-700 px-4 py-2 font-semibold text-white hover:bg-green-600">Tra cứu</button>
+          <button type="submit" class="w-full rounded-lg bg-blue-700 px-4 py-2 font-semibold text-white hover:bg-blue-600">Tra cứu</button>
         </form>
 
         <!-- Error Alert -->
@@ -69,7 +70,7 @@
     <!-- Guide Section -->
     <section id="guide" class="bg-gray-100 py-16">
       <div class="container mx-auto max-w-4xl px-6">
-        <h2 class="mb-6 text-center text-2xl font-bold text-green-700">Hướng dẫn tra cứu</h2>
+        <h2 class="mb-6 text-center text-2xl font-bold text-blue-700">Hướng dẫn tra cứu</h2>
         <ol class="space-y-4 text-gray-700 text-sm md:text-base">
           <li><span class="font-medium">Bước 1:</span> Chuẩn bị <span class="font-medium">Số báo danh</span>, <span class="font-medium">Căn cước công dân</span> và <span class="font-medium">Email</span> chính xác.</li>
           <li><span class="font-medium">Bước 2:</span> Nhấn <span class="font-semibold">Tra cứu</span> và chờ hệ thống phản hồi.
@@ -82,14 +83,14 @@
     <!-- FAQ Section -->
     <section id="faq" class="bg-white py-16">
       <div class="container mx-auto max-w-4xl px-6">
-        <h2 class="mb-6 text-center text-2xl font-bold text-green-700">FAQ</h2>
+        <h2 class="mb-6 text-center text-2xl font-bold text-blue-700">FAQ</h2>
         <div class="space-y-4">
           <details class="rounded-lg bg-gray-50 p-4 shadow-sm">
-            <summary class="cursor-pointer font-medium text-green-700">Không tra cứu được điểm?</summary>
+            <summary class="cursor-pointer font-medium text-blue-700">Không tra cứu được điểm?</summary>
             <p class="mt-2 text-gray-600">Đảm bảo bạn nhập chính xác <span class="font-medium">Số báo danh</span>, <span class="font-medium">CCCD</span> và <span class="font-medium">Email</span>. Nếu vẫn lỗi, vui lòng liên hệ Trung tâm Khảo thí ĐHQG‑HCM qua email hoặc hotline.</p>
           </details>
           <details class="rounded-lg bg-gray-50 p-4 shadow-sm">
-            <summary class="cursor-pointer font-medium text-green-700">Điểm có được dùng để xét tuyển ngay không?</summary>
+            <summary class="cursor-pointer font-medium text-blue-700">Điểm có được dùng để xét tuyển ngay không?</summary>
             <p class="mt-2 text-gray-600">Điểm ĐGNL được các trường đại học sử dụng theo mốc thời gian xét tuyển riêng. Hãy luôn kiểm tra thông báo tại website mỗi trường.</p>
           </details>
         </div>
@@ -97,10 +98,10 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-green-700 py-8 text-center text-white">
+    <footer class="bg-blue-700 py-8 text-center text-white">
       <div class="container mx-auto max-w-4xl px-6">
         <p>© 2025 Đại học Quốc gia TP.HCM – Trung tâm Khảo thí & ĐGCLĐT</p>
-        <p class="mt-2 text-sm text-green-200">Liên hệ: Nguyễn Huy Dũng – Ext&nbsp;2302</p>
+        <p class="mt-2 text-sm text-blue-200">Liên hệ: Nguyễn Huy Dũng – Ext&nbsp;2302</p>
       </div>
     </footer>
 
@@ -108,12 +109,12 @@
     <div id="resultModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 px-4 py-6">
       <div class="relative w-full max-w-lg scale-95 transform rounded-xl bg-white p-6 shadow-lg transition-all duration-300" id="modalCard">
         <button id="btnCloseResult" class="absolute right-4 top-4 text-gray-500 hover:text-gray-700"><i class="ph ph-x text-2xl"></i></button>
-        <h2 class="mb-4 flex items-center gap-2 text-xl font-bold text-green-700">
+        <h2 class="mb-4 flex items-center gap-2 text-xl font-bold text-blue-700">
           <i class="ph ph-star text-2xl"></i>
           Kết quả của&nbsp;<span id="resName"></span>
         </h2>
         <table class="mb-4 w-full text-left text-sm">
-          <tbody class="divide-y divide-green-100">
+          <tbody class="divide-y divide-blue-100">
             <tr>
               <th class="w-1/3 py-2 font-medium">Số báo danh</th>
               <td id="resCandid" class="py-2"></td>
@@ -129,7 +130,7 @@
           </tbody>
         </table>
         <h3 class="mb-2 text-sm font-semibold text-gray-700">Kết quả thi</h3>
-        <ul id="resSubjectList" class="mb-2 list-disc space-y-1 pl-5 text-green-700 text-sm"></ul>
+        <ul id="resSubjectList" class="mb-2 list-disc space-y-1 pl-5 text-blue-700 text-sm"></ul>
         <p id="resTotal" class="font-semibold text-red-600"></p>
       </div>
     </div>
@@ -142,12 +143,64 @@
       btnMenu?.addEventListener("click", () => mobileMenu.classList.remove("-translate-x-full"));
       btnCloseMenu?.addEventListener("click", () => mobileMenu.classList.add("-translate-x-full"));
 
-      /* Tra cứu logic – luôn trả về điểm cố định */
+      /* Tra cứu logic */
       const lookupForm = document.getElementById("lookupForm");
       const resultModal = document.getElementById("resultModal");
       const btnCloseResult = document.getElementById("btnCloseResult");
-      const modalCard = document.getElementById("modalCard");
       const errorBox = document.getElementById("errorBox");
 
       const resName = document.getElementById("resName");
-      const resCandid = document
+      const resCandid = document.getElementById("resCandid");
+      const resCccd = document.getElementById("resCccd");
+      const resEmail = document.getElementById("resEmail");
+      const resSubjectList = document.getElementById("resSubjectList");
+      const resTotal = document.getElementById("resTotal");
+
+      const FIXED_SUBJECTS = [
+        ["Tiếng Việt", 255],
+        ["Tiếng Anh", 221],
+        ["Toán", 191],
+        ["Tư duy khoa học", 264]
+      ];
+      const FIXED_TOTAL = 931;
+
+      lookupForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        resultModal.classList.add("hidden");
+        errorBox.classList.add("hidden");
+
+        const candid = document.getElementById("candid").value.trim();
+        const cccd = document.getElementById("cccd").value.trim();
+        const email = document.getElementById("email").value.trim();
+
+        if (!candid || !cccd || !email) {
+          errorBox.textContent = "Vui lòng nhập đầy đủ thông tin.";
+          errorBox.classList.remove("hidden");
+          return;
+        }
+
+        setTimeout(() => {
+          resName.textContent = "Thí sinh";
+          resCandid.textContent = candid;
+          resCccd.textContent = cccd;
+          resEmail.textContent = email;
+
+          resSubjectList.innerHTML = "";
+          FIXED_SUBJECTS.forEach(([name, score]) => {
+            const li = document.createElement("li");
+            li.textContent = `${name}: ${score} điểm.`;
+            resSubjectList.appendChild(li);
+          });
+          resTotal.textContent = `Tổng: ${FIXED_TOTAL} điểm.`;
+          resultModal.classList.remove("hidden");
+        }, 400);
+      });
+
+      /* Đóng modal */
+      btnCloseResult.addEventListener("click", () => resultModal.classList.add("hidden"));
+      resultModal.addEventListener("click", (e) => {
+        if (e.target === resultModal) resultModal.classList.add("hidden");
+      });
+    </script>
+  </body>
+</html>
