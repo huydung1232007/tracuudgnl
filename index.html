@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cổng Tra Cứu Điểm Đánh Giá Năng Lực – ĐHQG-HCM</title>
+    <title>Tra Cứu Điểm Đánh Giá Năng Lực – ĐHQG-HCM</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -42,7 +42,7 @@
           Tra Cứu Kết Quả Kỳ Thi Đánh Giá Năng Lực 2025
         </h1>
         <p class="mb-8 text-gray-600">
-          Nhập <span class="font-medium">Số báo danh</span>, <span class="font-medium">Căn cước công dân</span> và <span class="font-medium">Ngày sinh</span> để xem điểm thi. Hệ thống sẽ trả về kết quả chuẩn duy nhất như mẫu công bố.
+          Nhập <span class="font-medium">Số báo danh</span>, <span class="font-medium">Căn cước công dân</span> và <span class="font-medium">Email</span> để xem điểm thi. Hệ thống sẽ trả về kết quả chuẩn duy nhất như mẫu công bố.
         </p>
 
         <form id="lookupForm" class="space-y-6 rounded-xl bg-white p-6 shadow-md">
@@ -55,8 +55,8 @@
             <input type="text" id="cccd" required minlength="9" maxlength="12" pattern="\d{9,12}" class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-green-600 focus:outline-none" placeholder="VD: 012345678901" />
           </div>
           <div>
-            <label for="dob" class="mb-1 block text-sm font-medium">Ngày sinh</label>
-            <input type="date" id="dob" required class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-green-600 focus:outline-none" />
+            <label for="email" class="mb-1 block text-sm font-medium">Email</label>
+            <input type="email" id="email" required class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-green-600 focus:outline-none" placeholder="vd: abc@example.com" />
           </div>
           <button type="submit" class="w-full rounded-lg bg-green-700 px-4 py-2 font-semibold text-white hover:bg-green-600">Tra cứu</button>
         </form>
@@ -71,7 +71,7 @@
       <div class="container mx-auto max-w-4xl px-6">
         <h2 class="mb-6 text-center text-2xl font-bold text-green-700">Hướng dẫn tra cứu</h2>
         <ol class="space-y-4 text-gray-700 text-sm md:text-base">
-          <li><span class="font-medium">Bước 1:</span> Chuẩn bị <span class="font-medium">Số báo danh</span>, <span class="font-medium">Căn cước công dân</span> và <span class="font-medium">Ngày sinh</span> chính xác.</li>
+          <li><span class="font-medium">Bước 1:</span> Chuẩn bị <span class="font-medium">Số báo danh</span>, <span class="font-medium">Căn cước công dân</span> và <span class="font-medium">Email</span> chính xác.</li>
           <li><span class="font-medium">Bước 2:</span> Nhấn <span class="font-semibold">Tra cứu</span> và chờ hệ thống phản hồi.
             Nếu thông tin hợp lệ, cửa sổ popup sẽ hiển thị kết quả.</li>
           <li><span class="font-medium">Bước 3:</span> Lưu hoặc chụp lại màn hình popup để tra cứu nhanh về sau.</li>
@@ -86,7 +86,7 @@
         <div class="space-y-4">
           <details class="rounded-lg bg-gray-50 p-4 shadow-sm">
             <summary class="cursor-pointer font-medium text-green-700">Không tra cứu được điểm?</summary>
-            <p class="mt-2 text-gray-600">Đảm bảo bạn nhập chính xác <span class="font-medium">Số báo danh</span>, <span class="font-medium">CCCD</span> và <span class="font-medium">Ngày sinh</span>. Nếu vẫn lỗi, vui lòng liên hệ Trung tâm Khảo thí ĐHQG‑HCM qua email hoặc hotline.</p>
+            <p class="mt-2 text-gray-600">Đảm bảo bạn nhập chính xác <span class="font-medium">Số báo danh</span>, <span class="font-medium">CCCD</span> và <span class="font-medium">Email</span>. Nếu vẫn lỗi, vui lòng liên hệ Trung tâm Khảo thí ĐHQG‑HCM qua email hoặc hotline.</p>
           </details>
           <details class="rounded-lg bg-gray-50 p-4 shadow-sm">
             <summary class="cursor-pointer font-medium text-green-700">Điểm có được dùng để xét tuyển ngay không?</summary>
@@ -99,8 +99,8 @@
     <!-- Footer -->
     <footer class="bg-green-700 py-8 text-center text-white">
       <div class="container mx-auto max-w-4xl px-6">
-        <p>© 2025 Đại học Quốc gia TP.HCM – Huy Dũng</p>
-        <p class="mt-2 text-sm text-green-200">Liên hệ:Nguyễn Huy Dũng – Ext&nbsp;2302</p>
+        <p>© 2025 Đại học Quốc gia TP.HCM – Trung tâm Khảo thí & ĐGCLĐT</p>
+        <p class="mt-2 text-sm text-green-200">Liên hệ: Nguyễn Huy Dũng – Ext&nbsp;2302</p>
       </div>
     </footer>
 
@@ -121,6 +121,10 @@
             <tr>
               <th class="py-2 font-medium">CCCD</th>
               <td id="resCccd" class="py-2"></td>
+            </tr>
+            <tr>
+              <th class="py-2 font-medium">Email</th>
+              <td id="resEmail" class="py-2"></td>
             </tr>
           </tbody>
         </table>
