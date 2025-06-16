@@ -61,37 +61,36 @@
           <button type="submit" class="w-full rounded-lg bg-green-700 px-4 py-2 font-semibold text-white hover:bg-green-600">Tra cứu</button>
         </form>
 
-        <!-- Result Card -->
-        <div id="resultCard" class="mt-10 hidden w-full max-w-lg rounded-xl bg-white p-6 shadow-lg">
-          <h2 class="mb-4 flex items-center gap-2 text-xl font-bold text-green-700">
-            <i class="ph ph-star text-2xl"></i>
-            Kết quả của&nbsp;<span id="resName"></span>
-          </h2>
-          <table class="mb-4 w-full text-left text-sm">
-            <tbody class="divide-y divide-green-100">
-              <tr>
-                <th class="w-1/3 py-2 font-medium">Số báo danh</th>
-                <td id="resCandid" class="py-2"></td>
-              </tr>
-              <tr>
-                <th class="py-2 font-medium">CCCD</th>
-                <td id="resCccd" class="py-2"></td>
-              </tr>
-            </tbody>
-          </table>
-          <!-- Subject Scores -->
-          <h3 class="mb-2 text-sm font-semibold text-gray-700">Kết quả thi</h3>
-          <ul id="resSubjectList" class="mb-2 list-disc space-y-1 pl-5 text-green-700 text-sm"></ul>
-          <!-- Total -->
-          <p id="resTotal" class="font-semibold text-red-600"></p>
-        </div>
-
         <!-- Error Alert -->
         <div id="errorBox" class="mt-8 hidden rounded-lg bg-red-50 p-4 text-red-700"></div>
       </section>
     </main>
 
-    <!-- Guide & FAQ omitted for brevity to focus on form -->
+    <!-- Result Modal -->
+    <div id="resultModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 px-4 py-6">
+      <div class="relative w-full max-w-lg rounded-xl bg-white p-6 shadow-lg">
+        <button id="btnCloseResult" class="absolute right-4 top-4 text-gray-500 hover:text-gray-700"><i class="ph ph-x text-2xl"></i></button>
+        <h2 class="mb-4 flex items-center gap-2 text-xl font-bold text-green-700">
+          <i class="ph ph-star text-2xl"></i>
+          Kết quả của&nbsp;<span id="resName"></span>
+        </h2>
+        <table class="mb-4 w-full text-left text-sm">
+          <tbody class="divide-y divide-green-100">
+            <tr>
+              <th class="w-1/3 py-2 font-medium">Số báo danh</th>
+              <td id="resCandid" class="py-2"></td>
+            </tr>
+            <tr>
+              <th class="py-2 font-medium">CCCD</th>
+              <td id="resCccd" class="py-2"></td>
+            </tr>
+          </tbody>
+        </table>
+        <h3 class="mb-2 text-sm font-semibold text-gray-700">Kết quả thi</h3>
+        <ul id="resSubjectList" class="mb-2 list-disc space-y-1 pl-5 text-green-700 text-sm"></ul>
+        <p id="resTotal" class="font-semibold text-red-600"></p>
+      </div>
+    </div>
 
     <script>
       /* Mobile menu */
@@ -103,7 +102,8 @@
 
       /* Tra cứu logic – luôn trả về điểm cố định */
       const lookupForm = document.getElementById("lookupForm");
-      const resultCard = document.getElementById("resultCard");
+      const resultModal = document.getElementById("resultModal");
+      const btnCloseResult = document.getElementById("btnCloseResult");
       const errorBox = document.getElementById("errorBox");
 
       const resName = document.getElementById("resName");
@@ -123,14 +123,13 @@
 
       lookupForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        resultCard.classList.add("hidden");
+        resultModal.classList.add("hidden");
         errorBox.classList.add("hidden");
 
         const candid = document.getElementById("candid").value.trim();
         const cccd = document.getElementById("cccd").value.trim();
         const dob = document.getElementById("dob").value;
 
-        // Kiểm tra nhập đủ trường
         if (!candid || !cccd || !dob) {
           errorBox.textContent = "Vui lòng nhập đầy đủ thông tin.";
           errorBox.classList.remove("hidden");
@@ -139,11 +138,10 @@
 
         // Giả lập trễ mạng để UX tự nhiên
         setTimeout(() => {
-          resName.textContent = "Thí sinh"; // hoặc lấy tên từ API sau này
+          resName.textContent = "Thí sinh";
           resCandid.textContent = candid;
           resCccd.textContent = cccd;
 
-          // Render subjects
           resSubjectList.innerHTML = "";
           FIXED_SUBJECTS.forEach(([name, score]) => {
             const li = document.createElement("li");
@@ -151,9 +149,15 @@
             resSubjectList.appendChild(li);
           });
           resTotal.textContent = `Tổng: ${FIXED_TOTAL} điểm.`;
-           
-          resultCard.classList.remove("hidden");
+
+          resultModal.classList.remove("hidden");
         }, 400);
+      });
+
+      // Đóng modal
+      btnCloseResult.addEventListener("click", () => resultModal.classList.add("hidden"));
+      resultModal.addEventListener("click", (e) => {
+        if (e.target === resultModal) resultModal.classList.add("hidden");
       });
     </script>
   </body>
