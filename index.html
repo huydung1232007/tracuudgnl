@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cổng Tra Cứu Điểm Đánh Giá Năng Lực – ĐHQG‑HCM</title>
+    <title>Cổng Tra Cứu Điểm Đánh Giá Năng Lực – ĐHQG-HCM</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
   </head>
-  <body class="min-h-screen bg-gray-50 font-sans text-gray-800 antialiased">
+  <body class="min-h-screen bg-gray-50 font-sans text-gray-800 antialiased scroll-smooth">
     <!-- Navbar -->
     <header class="fixed inset-x-0 top-0 z-40 flex items-center justify-between bg-green-700/90 px-6 py-3 text-white shadow-lg backdrop-blur-md">
       <a href="#" class="flex items-center gap-2 text-lg font-semibold">
@@ -66,9 +66,47 @@
       </section>
     </main>
 
+    <!-- Guide Section -->
+    <section id="guide" class="bg-gray-100 py-16">
+      <div class="container mx-auto max-w-4xl px-6">
+        <h2 class="mb-6 text-center text-2xl font-bold text-green-700">Hướng dẫn tra cứu</h2>
+        <ol class="space-y-4 text-gray-700 text-sm md:text-base">
+          <li><span class="font-medium">Bước 1:</span> Chuẩn bị <span class="font-medium">Số báo danh</span>, <span class="font-medium">Căn cước công dân</span> và <span class="font-medium">Ngày sinh</span> chính xác.</li>
+          <li><span class="font-medium">Bước 2:</span> Nhấn <span class="font-semibold">Tra cứu</span> và chờ hệ thống phản hồi.
+            Nếu thông tin hợp lệ, cửa sổ popup sẽ hiển thị kết quả.</li>
+          <li><span class="font-medium">Bước 3:</span> Lưu hoặc chụp lại màn hình popup để tra cứu nhanh về sau.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="bg-white py-16">
+      <div class="container mx-auto max-w-4xl px-6">
+        <h2 class="mb-6 text-center text-2xl font-bold text-green-700">FAQ</h2>
+        <div class="space-y-4">
+          <details class="rounded-lg bg-gray-50 p-4 shadow-sm">
+            <summary class="cursor-pointer font-medium text-green-700">Không tra cứu được điểm?</summary>
+            <p class="mt-2 text-gray-600">Đảm bảo bạn nhập chính xác <span class="font-medium">Số báo danh</span>, <span class="font-medium">CCCD</span> và <span class="font-medium">Ngày sinh</span>. Nếu vẫn lỗi, vui lòng liên hệ Trung tâm Khảo thí ĐHQG‑HCM qua email hoặc hotline.</p>
+          </details>
+          <details class="rounded-lg bg-gray-50 p-4 shadow-sm">
+            <summary class="cursor-pointer font-medium text-green-700">Điểm có được dùng để xét tuyển ngay không?</summary>
+            <p class="mt-2 text-gray-600">Điểm ĐGNL được các trường đại học sử dụng theo mốc thời gian xét tuyển riêng. Hãy luôn kiểm tra thông báo tại website mỗi trường.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-green-700 py-8 text-center text-white">
+      <div class="container mx-auto max-w-4xl px-6">
+        <p>© 2025 Đại học Quốc gia TP.HCM – Huy Dũng</p>
+        <p class="mt-2 text-sm text-green-200">Liên hệ: <a class="underline" href="mailto:huydung</a> · (028) 37242160 – Ext&nbsp;2302</p>
+      </div>
+    </footer>
+
     <!-- Result Modal -->
     <div id="resultModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 px-4 py-6">
-      <div class="relative w-full max-w-lg rounded-xl bg-white p-6 shadow-lg">
+      <div class="relative w-full max-w-lg scale-95 transform rounded-xl bg-white p-6 shadow-lg transition-all duration-300" id="modalCard">
         <button id="btnCloseResult" class="absolute right-4 top-4 text-gray-500 hover:text-gray-700"><i class="ph ph-x text-2xl"></i></button>
         <h2 class="mb-4 flex items-center gap-2 text-xl font-bold text-green-700">
           <i class="ph ph-star text-2xl"></i>
@@ -104,61 +142,8 @@
       const lookupForm = document.getElementById("lookupForm");
       const resultModal = document.getElementById("resultModal");
       const btnCloseResult = document.getElementById("btnCloseResult");
+      const modalCard = document.getElementById("modalCard");
       const errorBox = document.getElementById("errorBox");
 
       const resName = document.getElementById("resName");
-      const resCandid = document.getElementById("resCandid");
-      const resCccd = document.getElementById("resCccd");
-      const resSubjectList = document.getElementById("resSubjectList");
-      const resTotal = document.getElementById("resTotal");
-
-      // Mẫu điểm duy nhất
-      const FIXED_SUBJECTS = [
-        ["Tiếng Việt", 255],
-        ["Tiếng Anh", 221],
-        ["Toán", 191],
-        ["Tư duy khoa học", 264]
-      ];
-      const FIXED_TOTAL = 931;
-
-      lookupForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        resultModal.classList.add("hidden");
-        errorBox.classList.add("hidden");
-
-        const candid = document.getElementById("candid").value.trim();
-        const cccd = document.getElementById("cccd").value.trim();
-        const dob = document.getElementById("dob").value;
-
-        if (!candid || !cccd || !dob) {
-          errorBox.textContent = "Vui lòng nhập đầy đủ thông tin.";
-          errorBox.classList.remove("hidden");
-          return;
-        }
-
-        // Giả lập trễ mạng để UX tự nhiên
-        setTimeout(() => {
-          resName.textContent = "Thí sinh";
-          resCandid.textContent = candid;
-          resCccd.textContent = cccd;
-
-          resSubjectList.innerHTML = "";
-          FIXED_SUBJECTS.forEach(([name, score]) => {
-            const li = document.createElement("li");
-            li.textContent = `${name}: ${score} điểm.`;
-            resSubjectList.appendChild(li);
-          });
-          resTotal.textContent = `Tổng: ${FIXED_TOTAL} điểm.`;
-
-          resultModal.classList.remove("hidden");
-        }, 400);
-      });
-
-      // Đóng modal
-      btnCloseResult.addEventListener("click", () => resultModal.classList.add("hidden"));
-      resultModal.addEventListener("click", (e) => {
-        if (e.target === resultModal) resultModal.classList.add("hidden");
-      });
-    </script>
-  </body>
-</html>
+      const resCandid = document
