@@ -4,17 +4,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tra Cứu Điểm Đánh Giá Năng Lực – ĐHQG‑HCM</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Cổng Tra Cứu Điểm Đánh Giá Năng Lực – ĐHQG‑HCM</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
   </head>
   <body class="min-h-screen bg-gray-50 font-sans text-gray-800 antialiased scroll-smooth">
     <!-- Navbar -->
     <header class="fixed inset-x-0 top-0 z-40 flex items-center justify-between bg-blue-700/90 px-6 py-3 text-white shadow-lg backdrop-blur-md">
-      <a href="#" class="flex items-center gap-2 text-lg font-semibold">
-        <!-- ĐHQG‑HCM logo -->
-        <img src="logo-dhqg.png" alt="ĐHQG-HCM Logo" class="h-9 w-auto" />
+      <a href="#" class="flex items-center gap-2 text-lg font-semibold select-none">
+        <img src="logo-dhqg.png" alt="ĐHQG‑HCM" class="h-9 w-auto" />
         Tra Cứu Điểm ĐGNL
       </a>
       <nav class="hidden space-x-8 md:flex">
@@ -36,58 +35,52 @@
       </nav>
     </aside>
 
-    <!-- Hero + Lookup Form -->
+    <!-- Hero & Form -->
     <main class="flex flex-col items-center justify-center pt-28 pb-16">
       <section class="w-full max-w-xl px-6 text-center">
         <h1 class="mb-6 text-3xl font-extrabold text-blue-700 md:text-4xl">
           Tra Cứu Kết Quả Kỳ Thi Đánh Giá Năng Lực 2025
         </h1>
         <p class="mb-8 text-gray-600">
-          Nhập <span class="font-medium">Căn cước công dân</span> và <span class="font-medium">Email</span> để xem điểm thi. Hệ thống sẽ trả về kết quả chuẩn duy nhất như mẫu công bố.
+          Vui lòng nhập <span class="font-medium">Căn cước công dân</span> và <span class="font-medium">Email</span> đã đăng ký để xem điểm thi.
         </p>
 
-        <form id="lookupForm" class="space-y-6 rounded-xl bg-white p-6 shadow-md">
-               <div>
+        <form id="lookupForm" novalidate class="space-y-6 rounded-xl bg-white p-6 shadow-md">
+          <div>
             <label for="cccd" class="mb-1 block text-sm font-medium">Căn cước công dân</label>
-            <input type="text" id="cccd" required minlength="9" maxlength="12" pattern="\d{9,12}" class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-blue-600 focus:outline-none" placeholder="VD: 012345678901" />
+            <input id="cccd" type="text" required pattern="[0-9]{9,12}" class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-blue-600 focus:outline-none" placeholder="VD: 012345678901" />
           </div>
           <div>
             <label for="email" class="mb-1 block text-sm font-medium">Email</label>
-            <input type="email" id="email" required class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-blue-600 focus:outline-none" placeholder="vd: abc@example.com" />
+            <input id="email" type="email" required class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-blue-600 focus:outline-none" placeholder="vd: abc@example.com" />
           </div>
           <button type="submit" class="w-full rounded-lg bg-blue-700 px-4 py-2 font-semibold text-white hover:bg-blue-600">Tra cứu</button>
         </form>
 
-        <!-- Error Alert -->
         <div id="errorBox" class="mt-8 hidden rounded-lg bg-red-50 p-4 text-red-700"></div>
       </section>
     </main>
 
-    <!-- Guide Section -->
+    <!-- Guide -->
     <section id="guide" class="bg-gray-100 py-16">
       <div class="container mx-auto max-w-4xl px-6">
         <h2 class="mb-6 text-center text-2xl font-bold text-blue-700">Hướng dẫn tra cứu</h2>
         <ol class="space-y-4 text-gray-700 text-sm md:text-base">
-          <li><span class="font-medium">Bước 1:</span> Chuẩn bị <span class="font-medium">Số báo danh</span>, <span class="font-medium">Căn cước công dân</span> và <span class="font-medium">Email</span> chính xác.</li>
-          <li><span class="font-medium">Bước 2:</span> Nhấn <span class="font-semibold">Tra cứu</span> và chờ hệ thống phản hồi.
-            Nếu thông tin hợp lệ, cửa sổ popup sẽ hiển thị kết quả.</li>
-          <li><span class="font-medium">Bước 3:</span> Lưu hoặc chụp lại màn hình popup để tra cứu nhanh về sau.</li>
+          <li><span class="font-medium">Bước 1:</span> Nhập đúng <span class="font-medium">CCCD</span> (9–12 số) và <span class="font-medium">Email</span>.</li>
+          <li><span class="font-medium">Bước 2:</span> Bấm <span class="font-semibold">Tra cứu</span> và chờ kết quả hiển thị popup.</li>
+          <li><span class="font-medium">Bước 3:</span> Lưu/chụp màn hình kết quả để dùng khi xét tuyển.</li>
         </ol>
       </div>
     </section>
 
-    <!-- FAQ Section -->
+    <!-- FAQ -->
     <section id="faq" class="bg-white py-16">
       <div class="container mx-auto max-w-4xl px-6">
         <h2 class="mb-6 text-center text-2xl font-bold text-blue-700">FAQ</h2>
         <div class="space-y-4">
           <details class="rounded-lg bg-gray-50 p-4 shadow-sm">
             <summary class="cursor-pointer font-medium text-blue-700">Không tra cứu được điểm?</summary>
-            <p class="mt-2 text-gray-600">Đảm bảo bạn nhập chính xác <span class="font-medium">Số báo danh</span>, <span class="font-medium">CCCD</span> và <span class="font-medium">Email</span>. Nếu vẫn lỗi, vui lòng liên hệ Trung tâm Khảo thí ĐHQG‑HCM qua email hoặc hotline.</p>
-          </details>
-          <details class="rounded-lg bg-gray-50 p-4 shadow-sm">
-            <summary class="cursor-pointer font-medium text-blue-700">Điểm có được dùng để xét tuyển ngay không?</summary>
-            <p class="mt-2 text-gray-600">Điểm ĐGNL được các trường đại học sử dụng theo mốc thời gian xét tuyển riêng. Hãy luôn kiểm tra thông báo tại website mỗi trường.</p>
+            <p class="mt-2 text-gray-600">Kiểm tra định dạng <span class="font-medium">CCCD</span> (9–12 số) và <span class="font-medium">Email</span>. Nếu đúng mà vẫn lỗi, liên hệ Trung tâm Khảo thí ĐHQG‑HCM.</p>
           </details>
         </div>
       </div>
@@ -96,23 +89,20 @@
     <!-- Footer -->
     <footer class="bg-blue-700 py-8 text-center text-white">
       <div class="container mx-auto max-w-4xl px-6">
-        <p>© 2025 Đại học Quốc gia TP.HCM – Trung tâm Khảo thí & ĐGCLĐT</p>
-        <p class="mt-2 text-sm text-blue-200">Liên hệ: Nguyễn Huy Dũng – Ext&nbsp;2302</p>
+        <p>© 2025 Đại học Quốc gia TP.HCM – Trung tâm Khảo thí & ĐGCLĐT</p>
+        <p class="mt-2 text-sm text-blue-200">Liên hệ: Nguyễn Huy Dũng – Ext 2302</p>
       </div>
     </footer>
 
     <!-- Result Modal -->
     <div id="resultModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 px-4 py-6">
-      <div class="relative w-full max-w-lg scale-95 transform rounded-xl bg-white p-6 shadow-lg transition-all duration-300" id="modalCard">
+      <div id="modalCard" class="relative w-full max-w-lg scale-95 transform rounded-xl bg-white p-6 shadow-lg transition-all duration-300">
         <button id="btnCloseResult" class="absolute right-4 top-4 text-gray-500 hover:text-gray-700"><i class="ph ph-x text-2xl"></i></button>
-        <h2 class="mb-4 flex items-center gap-2 text-xl font-bold text-blue-700">
-          <i class="ph ph-star text-2xl"></i>
-          Kết quả của&nbsp;<span id="resName"></span>
-        </h2>
+        <h2 class="mb-4 flex items-center gap-2 text-xl font-bold text-blue-700"><i class="ph ph-star text-2xl"></i> Kết quả</h2>
         <table class="mb-4 w-full text-left text-sm">
           <tbody class="divide-y divide-blue-100">
-          <tr>
-              <th class="py-2 font-medium">CCCD</th>
+            <tr>
+              <th class="w-1/3 py-2 font-medium">CCCD</th>
               <td id="resCccd" class="py-2"></td>
             </tr>
             <tr>
@@ -128,71 +118,70 @@
     </div>
 
     <script>
-      /* Mobile menu */
-      const btnMenu = document.getElementById("btnMenu");
-      const mobileMenu = document.getElementById("mobileMenu");
-      const btnCloseMenu = document.getElementById("btnCloseMenu");
-      btnMenu?.addEventListener("click", () => mobileMenu.classList.remove("-translate-x-full"));
-      btnCloseMenu?.addEventListener("click", () => mobileMenu.classList.add("-translate-x-full"));
+      // Mobile menu toggle
+      const btnMenu = document.getElementById('btnMenu');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const btnCloseMenu = document.getElementById('btnCloseMenu');
+      btnMenu?.addEventListener('click', () => mobileMenu.classList.remove('-translate-x-full'));
+      btnCloseMenu?.addEventListener('click', () => mobileMenu.classList.add('-translate-x-full'));
 
-      /* Tra cứu logic */
-      const lookupForm = document.getElementById("lookupForm");
-      const resultModal = document.getElementById("resultModal");
-      const btnCloseResult = document.getElementById("btnCloseResult");
-      const errorBox = document.getElementById("errorBox");
+      // Elements
+      const lookupForm = document.getElementById('lookupForm');
+      const resultModal = document.getElementById('resultModal');
+      const btnCloseResult = document.getElementById('btnCloseResult');
+      const errorBox = document.getElementById('errorBox');
+      const resCccd = document.getElementById('resCccd');
+      const resEmail = document.getElementById('resEmail');
+      const resSubjectList = document.getElementById('resSubjectList');
+      const resTotal = document.getElementById('resTotal');
 
-      const resName = document.getElementById("resName");
-      const resCandid = document.getElementById("resCandid");
-      const resCccd = document.getElementById("resCccd");
-      const resEmail = document.getElementById("resEmail");
-      const resSubjectList = document.getElementById("resSubjectList");
-      const resTotal = document.getElementById("resTotal");
-
-      const FIXED_SUBJECTS = [
-        ["Tiếng Việt", 218],
-        ["Tiếng Anh", 221],
-        ["Toán", 191],
-        ["Tư duy khoa học", 202]
+      // Static scores
+      const SUBJECTS = [
+        ['Tiếng Việt', 218],
+        ['Tiếng Anh', 202],
+        ['Toán', 191],
+        ['Tư duy khoa học', 221]
       ];
-      const FIXED_TOTAL = 832;
+      const TOTAL = 832;
 
-      lookupForm.addEventListener("submit", (e) => {
+      lookupForm.addEventListener('submit', e => {
         e.preventDefault();
-        resultModal.classList.add("hidden");
-        errorBox.classList.add("hidden");
+        errorBox.classList.add('hidden');
 
-        const candid = document.getElementById("candid").value.trim();
-        const cccd = document.getElementById("cccd").value.trim();
-        const email = document.getElementById("email").value.trim();
+        const cccd = document.getElementById('cccd').value.trim();
+        const email = document.getElementById('email').value.trim();
 
-        if (!candid || !cccd || !email) {
-          errorBox.textContent = "Vui lòng nhập đầy đủ thông tin.";
-          errorBox.classList.remove("hidden");
+        // Basic validation
+        if (!/^[0-9]{9,12}$/.test(cccd)) {
+          errorBox.textContent = 'CCCD phải gồm 9–12 chữ số.';
+          errorBox.classList.remove('hidden');
+          return;
+        }
+        if (!email.includes('@')) {
+          errorBox.textContent = 'Định dạng email chưa hợp lệ.';
+          errorBox.classList.remove('hidden');
           return;
         }
 
+        // Simulate API delay
         setTimeout(() => {
-          resName.textContent = "Thí sinh";
-          resCandid.textContent = candid;
           resCccd.textContent = cccd;
           resEmail.textContent = email;
-
-          resSubjectList.innerHTML = "";
-          FIXED_SUBJECTS.forEach(([name, score]) => {
-            const li = document.createElement("li");
+          resSubjectList.innerHTML = '';
+          SUBJECTS.forEach(([name, score]) => {
+            const li = document.createElement('li');
             li.textContent = `${name}: ${score} điểm.`;
             resSubjectList.appendChild(li);
           });
-          resTotal.textContent = `Tổng: ${FIXED_TOTAL} điểm.`;
-          resultModal.classList.remove("hidden");
-        }, 400);
+          resTotal.textContent = `Tổng: ${TOTAL} điểm.`;
+          resultModal.classList.remove('hidden');
+        }, 300);
       });
 
-      /* Đóng modal */
-      btnCloseResult.addEventListener("click", () => resultModal.classList.add("hidden"));
-      resultModal.addEventListener("click", (e) => {
-        if (e.target === resultModal) resultModal.classList.add("hidden");
+      // Close modal
+      btnCloseResult.addEventListener('click', () => resultModal.classList.add('hidden'));
+      resultModal.addEventListener('click', e => {
+        if (e.target === resultModal) resultModal.classList.add('hidden');
       });
     </script>
   </body>
-</html>
